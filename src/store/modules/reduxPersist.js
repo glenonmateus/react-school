@@ -6,7 +6,7 @@ const reducers = () => {
     {
       key: "ApplicationName",
       storage,
-      whitelist: ["example"],
+      whitelist: ["auth"],
     },
     reducers,
   );
