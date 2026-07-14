@@ -13,7 +13,7 @@ export default createGlobalStyle`
   body {
     font-family: sans-serif;
     background: ${primaryDarkColor};
-    color: ${primaryColor};
+    color: ${primaryDarkColor};
   }
 
   html, body, #root {
@@ -28,6 +28,11 @@ export default createGlobalStyle`
     padding: 10px 20px;
     border-radius: 4px;
     font-weight: 700;
+    transition: all 300ms;
+  }
+
+  button:hover {
+    filter: brightness(75%);
   }
 
   a {
@@ -41,7 +46,7 @@ export default createGlobalStyle`
 `;
 
 export const Container = styled.section`
-  max-width: 360px;
+  max-width: 480px;
   background: #fff;
   margin: 30px auto;
   padding: 30px;
