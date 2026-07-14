@@ -1,26 +1,56 @@
-import { useDispatch } from "react-redux";
-import { buttonClickRequest } from "store/modules/example/actions";
+import { get } from "lodash";
+import { useEffect, useState } from "react";
+import { FaUserCircle, FaUserEdit, FaWindowClose } from "react-icons/fa";
+import { Link } from "react-router";
+import axios from "services/axios";
 import { Container } from "styles/GlobalStyles";
-import { Paragraph, Title } from "./styled";
+import { ProfilePicture, StudentContainer } from "./styled";
 
 const Home = () => {
-  const dispatch = useDispatch();
+  const [students, setStudents] = useState([]);
 
-  const handleClick = (event) => {
-    event.preventDefault();
-    dispatch(buttonClickRequest());
-  };
+  useEffect(() => {
+    const fetchStudents = async () => {
+      try {
+        const response = await axios.get("/students");
+        setStudents(response.data);
+      } catch (error) {
+        if (!axios.isCancel(error)) {
+          console.error("Error fetching students:", error);
+        }
+      }
+    };
+
+    fetchStudents();
+  }, []);
 
   return (
     <Container>
-      <Title>
-        Login
-        <small>System</small>
-      </Title>
-      <Paragraph>Esse é um paragrafo</Paragraph>
-      <button type="button" onClick={handleClick}>
-        Enviar
-      </button>
+      <h1>Home</h1>
+
+      <StudentContainer>
+        {students.map((student) => {
+          return (
+            <div key={student.id}>
+              <ProfilePicture>
+                {get(student, "Photos[0].url", false) ? (
+                  <img src={student.Photos[0].url} alt="" />
+                ) : (
+                  <FaUserCircle size={36} />
+                )}
+              </ProfilePicture>
+              <span>{student.name}</span>
+              <span>{student.email}</span>
+              <Link to={`/students/${student.id}/edit`}>
+                <FaUserEdit size={16}></FaUserEdit>
+              </Link>
+              <Link to={`/students/${student.id}/delete`}>
+                <FaWindowClose size={16}></FaWindowClose>
+              </Link>
+            </div>
+          );
+        })}
+      </StudentContainer>
     </Container>
   );
 };
