@@ -9,8 +9,9 @@ function* loginRequest({ payload }) {
     const response = yield call(axios.post, "/tokens", payload);
     yield put(actions.loginSuccess({ ...response.data }));
     axios.defaults.headers.Authorization = `Bearer ${response.data.access_token}`;
+    payload.navigate(-1);
     toast.success("Logado com sucesso");
-  } catch (error) {
+  } catch {
     yield put(actions.loginFailure());
     toast.error("Usuário e/ou senha inválidos");
   }

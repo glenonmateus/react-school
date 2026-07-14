@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 import * as actions from "store/modules/auth/actions";
 import { Container } from "styles/GlobalStyles";
 import { Form } from "./styled";
 
 const Login = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [form, setForm] = useState({ email: "", password: "" });
@@ -21,7 +23,7 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(actions.loginRequest(form));
+    dispatch(actions.loginRequest({ ...form, navigate }));
   };
 
   return (
