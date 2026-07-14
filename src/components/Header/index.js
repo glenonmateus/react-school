@@ -8,10 +8,10 @@ const Header = () => {
       <Link to="/">
         <FaHome size={24}></FaHome>
       </Link>
-      <Link to="/login">
+      <Link to="/register">
         <FaUserAlt size={24}></FaUserAlt>
       </Link>
-      <Link to="/logout">
+      <Link to="/login">
         <FaSignInAlt size={24}></FaSignInAlt>
       </Link>
     </Nav>
