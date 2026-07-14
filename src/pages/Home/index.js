@@ -1,3 +1,4 @@
+import Loading from "components/Loading";
 import { get } from "lodash";
 import { useEffect, useState } from "react";
 import { FaUserCircle, FaUserEdit, FaWindowClose } from "react-icons/fa";
@@ -8,16 +9,20 @@ import { ProfilePicture, StudentContainer } from "./styled";
 
 const Home = () => {
   const [students, setStudents] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchStudents = async () => {
       try {
+        setIsLoading(true);
         const response = await axios.get("/students");
         setStudents(response.data);
       } catch (error) {
         if (!axios.isCancel(error)) {
           console.error("Error fetching students:", error);
         }
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -26,7 +31,9 @@ const Home = () => {
 
   return (
     <Container>
-      <h1>Home</h1>
+      <Loading isLoading={isLoading}></Loading>
+
+      <h1>Alunos</h1>
 
       <StudentContainer>
         {students.map((student) => {
