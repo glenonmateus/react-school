@@ -5,11 +5,12 @@ import * as actions from "store/modules/auth/actions";
 import * as types from "store/modules/types";
 
 function* loginRequest({ payload }) {
+  const { email, password, navigate } = payload;
   try {
-    const response = yield call(axios.post, "/tokens", payload);
+    const response = yield call(axios.post, "/tokens", { email, password });
     yield put(actions.loginSuccess({ ...response.data }));
     axios.defaults.headers.Authorization = `Bearer ${response.data.access_token}`;
-    payload.navigate(-1);
+    navigate(-1);
     toast.success("Logado com sucesso");
   } catch {
     yield put(actions.loginFailure());
