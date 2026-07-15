@@ -1,10 +1,10 @@
+import Form from "components/Form";
 import Input from "components/Input";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import axios from "services/axios";
 import { Container } from "styles/GlobalStyles";
-import { Form } from "./styled";
 
 const Register = () => {
   const navigate = useNavigate();
