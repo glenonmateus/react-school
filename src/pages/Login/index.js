@@ -1,3 +1,4 @@
+import Button from "components/Button";
 import Form from "components/Form";
 import Input from "components/Input";
 import { useState } from "react";
@@ -50,7 +51,7 @@ const Login = () => {
           onChange={handleChange}
         ></Input>
 
-        <button type="submit">Entrar</button>
+        <Button type="submit">Entrar</Button>
       </Form>
     </Container>
   );

@@ -1,3 +1,4 @@
+import Button from "components/Button";
 import Form from "components/Form";
 import Input from "components/Input";
 import { useState } from "react";
@@ -93,7 +94,7 @@ const Register = () => {
           Senha:
         </Input>
 
-        <button type="submit">Cadastrar</button>
+        <Button type="submit">Cadastrar</Button>
       </Form>
     </Container>
   );
