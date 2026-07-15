@@ -1,10 +1,10 @@
+import Form from "components/Form";
 import Input from "components/Input";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import * as actions from "store/modules/auth/actions";
 import { Container } from "styles/GlobalStyles";
-import { Form } from "./styled";
 
 const Login = () => {
   const navigate = useNavigate();
