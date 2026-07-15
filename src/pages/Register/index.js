@@ -1,3 +1,4 @@
+import Input from "components/Input";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
@@ -42,42 +43,44 @@ const Register = () => {
     <Container>
       <h1>Crie sua conta</h1>
       <Form onSubmit={handleSubmit}>
-        <label htmlFor="name">Nome:</label>
-        <input
+        <Input
+          name="name"
           type="text"
           id="name"
-          name="name"
           minLength={3}
           maxLength={255}
           placeholder="Seu nome"
           value={form.name}
           onChange={handleChange}
-        />
+        >
+          Nome:
+        </Input>
 
-        <label htmlFor="surname">Sobrenome:</label>
-        <input
+        <Input
+          name="surname"
           type="text"
           id="surname"
-          name="surname"
           minLength={3}
           maxLength={255}
           placeholder="Seu sobrenome"
           value={form.surname}
           onChange={handleChange}
-        />
+        >
+          Sobrenome:
+        </Input>
 
-        <label htmlFor="email">Email:</label>
-        <input
+        <Input
           type="email"
           id="email"
           name="email"
           placeholder="Seu email"
           value={form.email}
           onChange={handleChange}
-        />
+        >
+          Email:
+        </Input>
 
-        <label htmlFor="password">Senha:</label>
-        <input
+        <Input
           type="password"
           id="password"
           name="password"
@@ -86,7 +89,9 @@ const Register = () => {
           placeholder="Sua senha"
           value={form.password}
           onChange={handleChange}
-        />
+        >
+          Senha:
+        </Input>
 
         <button type="submit">Cadastrar</button>
       </Form>

@@ -1,3 +1,4 @@
+import Input from "components/Input";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
@@ -30,21 +31,15 @@ const Login = () => {
     <Container>
       <h1>Login</h1>
       <Form onSubmit={handleSubmit}>
-        <label htmlFor="email" hidden={true}>
-          Email
-        </label>
-        <input
+        <Input
           type="email"
           id="email"
           name="email"
           placeholder="Seu email"
           value={form.email}
           onChange={handleChange}
-        />
-        <label htmlFor="password" hidden={true}>
-          Password
-        </label>
-        <input
+        ></Input>
+        <Input
           type="password"
           id="password"
           name="password"
@@ -53,7 +48,7 @@ const Login = () => {
           maxLength={50}
           value={form.password}
           onChange={handleChange}
-        />
+        ></Input>
 
         <button type="submit">Entrar</button>
       </Form>
