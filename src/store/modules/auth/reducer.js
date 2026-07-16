@@ -11,7 +11,6 @@ const reducer = (state = initialState, action) => {
 
   switch (type) {
     case types.LOGIN_SUCCESS: {
-      console.log("loginSuccess", state);
       return {
         ...state,
         isLoggedIn: true,
@@ -21,12 +20,10 @@ const reducer = (state = initialState, action) => {
     }
 
     case types.LOGIN_FAILURE: {
-      console.log("loginFailure", state);
       return { ...state, isLoading: false };
     }
 
     case types.LOGIN_REQUEST: {
-      console.log("loginRequest", state);
       return { ...state, isLoading: true };
     }
 
