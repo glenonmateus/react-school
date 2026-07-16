@@ -4,7 +4,6 @@ const initialState = {
   isLoggedIn: false,
   token: false,
   isLoading: false,
-  user: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -12,24 +11,23 @@ const reducer = (state = initialState, action) => {
 
   switch (type) {
     case types.LOGIN_SUCCESS: {
-      const newState = { ...state };
-      newState.isLoggedIn = true;
-      newState.token = payload.access_token;
-      newState.isLoading = false;
-      return newState;
+      console.log("loginSuccess", state);
+      return {
+        ...state,
+        isLoggedIn: true,
+        token: payload.access_token,
+        isLoading: false,
+      };
     }
 
     case types.LOGIN_FAILURE: {
-      const newState = { ...initialState };
-      newState.isLoading = false;
-      return newState;
+      console.log("loginFailure", state);
+      return { ...state, isLoading: false };
     }
 
     case types.LOGIN_REQUEST: {
-      console.log("loginRequest", payload);
-      const newState = { ...state };
-      newState.isLoading = true;
-      return newState;
+      console.log("loginRequest", state);
+      return { ...state, isLoading: true };
     }
 
     default:
