@@ -10,7 +10,7 @@ function* loginRequest({ payload }) {
     const response = yield call(axios.post, "/tokens", { email, password });
     yield put(actions.loginSuccess(response.data));
     toast.success("Logado com sucesso");
-    navigate(-1);
+    navigate("/");
   } catch {
     yield put(actions.loginFailure());
     toast.error("Usuário e/ou senha inválidos");
