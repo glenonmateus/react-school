@@ -1,17 +1,11 @@
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import rootReducer from "store/modules/rootReducer";
 
-const reducers = () => {
-  const persistedReducers = persistReducer(
-    {
-      key: "ApplicationName",
-      storage,
-      whitelist: ["auth"],
-    },
-    reducers,
-  );
-
-  return persistedReducers;
+const persistConfig = {
+  key: "ApplicationName",
+  storage,
+  whitelist: ["auth"],
 };
 
-export default reducers;
+export default persistReducer(persistConfig, rootReducer);
