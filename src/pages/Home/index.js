@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { FaUserCircle, FaUserEdit, FaWindowClose } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Link } from "react-router";
+import { toast } from "react-toastify";
 import axios from "services/axios";
 import { Container } from "styles/GlobalStyles";
 import { ProfilePicture, StudentContainer } from "./styled";
@@ -18,8 +19,8 @@ const Home = () => {
         const response = await axios.get("/students");
         setStudents(response.data);
       } catch (error) {
-        if (!axios.isCancel(error)) {
-          console.error("Error fetching students:", error);
+        if (error.response.status === 401) {
+          toast.error("Usuário não autenticado");
         }
       }
     };
