@@ -17,13 +17,15 @@ const Header = () => {
       <Link to="/">
         <FaHome size={24}></FaHome>
       </Link>
-      <Link to="/register">
-        <FaUserAlt size={24}></FaUserAlt>
-      </Link>
       {!isLoggedIn ? (
-        <Link to="/login">
-          <FaSignInAlt size={24}></FaSignInAlt>
-        </Link>
+        <>
+          <Link to="/register">
+            <FaUserAlt size={24}></FaUserAlt>
+          </Link>
+          <Link to="/login">
+            <FaSignInAlt size={24}></FaSignInAlt>
+          </Link>
+        </>
       ) : (
         <Link to="/logout" onClick={handleLogout}>
           <FaSignOutAlt size={24}></FaSignOutAlt>
