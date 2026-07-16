@@ -20,11 +20,15 @@ const reducer = (state = initialState, action) => {
     }
 
     case types.LOGIN_FAILURE: {
-      return { ...state, isLoading: false };
+      return { ...initialState };
     }
 
     case types.LOGIN_REQUEST: {
       return { ...state, isLoading: true };
+    }
+
+    case types.LOGOUT_REQUEST: {
+      return { ...initialState };
     }
 
     default:

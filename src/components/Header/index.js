@@ -1,8 +1,17 @@
-import { FaHome, FaSignInAlt, FaUserAlt } from "react-icons/fa";
+import { FaHome, FaSignInAlt, FaSignOutAlt, FaUserAlt } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router";
+import * as actions from "store/modules/auth/actions";
 import { Nav } from "./styled";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
+  const handleLogout = () => {
+    dispatch(actions.logoutRequest());
+  };
+
   return (
     <Nav>
       <Link to="/">
@@ -11,9 +20,15 @@ const Header = () => {
       <Link to="/register">
         <FaUserAlt size={24}></FaUserAlt>
       </Link>
-      <Link to="/login">
-        <FaSignInAlt size={24}></FaSignInAlt>
-      </Link>
+      {!isLoggedIn ? (
+        <Link to="/login">
+          <FaSignInAlt size={24}></FaSignInAlt>
+        </Link>
+      ) : (
+        <Link to="/logout" onClick={handleLogout}>
+          <FaSignOutAlt size={24}></FaSignOutAlt>
+        </Link>
+      )}
     </Nav>
   );
 };
