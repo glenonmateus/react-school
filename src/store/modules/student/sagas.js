@@ -7,7 +7,6 @@ import * as types from "store/modules/types";
 function* fetchStudentRequest() {
   try {
     const response = yield call(axios.get, "/students");
-    console.log("sagas", response.data);
     yield put(actions.fetchStudentSuccess(response.data));
   } catch (error) {
     if (error.response.status === 401) {
