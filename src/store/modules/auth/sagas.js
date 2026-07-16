@@ -9,7 +9,6 @@ function* loginRequest({ payload }) {
   try {
     const response = yield call(axios.post, "/tokens", { email, password });
     yield put(actions.loginSuccess(response.data));
-    axios.defaults.headers.Authorization = `Bearer ${response.data.access_token}`;
     toast.success("Logado com sucesso");
     navigate(-1);
   } catch {
