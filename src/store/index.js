@@ -20,6 +20,7 @@ const store = configureStore({
           "REGISTER",
           "LOGIN_REQUEST",
           "persist/PERSIST",
+          "persist/PURGE",
         ],
       },
     }).concat(sagaMiddleware),
