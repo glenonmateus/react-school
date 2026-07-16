@@ -8,10 +8,10 @@ function* loginRequest({ payload }) {
   const { email, password, navigate } = payload;
   try {
     const response = yield call(axios.post, "/tokens", { email, password });
-    yield put(actions.loginSuccess({ ...response.data }));
+    yield put(actions.loginSuccess(response.data));
     axios.defaults.headers.Authorization = `Bearer ${response.data.access_token}`;
-    navigate(-1);
     toast.success("Logado com sucesso");
+    navigate(-1);
   } catch {
     yield put(actions.loginFailure());
     toast.error("Usuário e/ou senha inválidos");
