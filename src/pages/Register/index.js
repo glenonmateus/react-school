@@ -1,7 +1,6 @@
 import Button from "components/Button";
-import Form from "components/Form";
+import Form, { useFormField } from "components/Form";
 import Input from "components/Input";
-import { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import axios from "services/axios";
@@ -9,23 +8,12 @@ import { Container } from "styles/GlobalStyles";
 
 const Register = () => {
   const navigate = useNavigate();
-  const [form, setForm] = useState({
+  const { form, handleChange } = useFormField({
     name: "",
     surname: "",
     email: "",
     password: "",
   });
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    setForm((prevData) => {
-      return {
-        ...prevData,
-        [name]: value,
-      };
-    });
-  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -52,7 +40,7 @@ const Register = () => {
           maxLength={255}
           placeholder="Seu nome"
           value={form.name}
-          onChange={handleChange}
+          onChange={(event) => handleChange("name", event.target.value)}
         >
           Nome:
         </Input>
@@ -65,7 +53,7 @@ const Register = () => {
           maxLength={255}
           placeholder="Seu sobrenome"
           value={form.surname}
-          onChange={handleChange}
+          onChange={(event) => handleChange("surname", event.target.value)}
         >
           Sobrenome:
         </Input>
@@ -76,7 +64,7 @@ const Register = () => {
           name="email"
           placeholder="Seu email"
           value={form.email}
-          onChange={handleChange}
+          onChange={(event) => handleChange("email", event.target.value)}
         >
           Email:
         </Input>
@@ -89,7 +77,7 @@ const Register = () => {
           maxLength={50}
           placeholder="Sua senha"
           value={form.password}
-          onChange={handleChange}
+          onChange={(event) => handleChange("password", event.target.value)}
         >
           Senha:
         </Input>

@@ -1,7 +1,6 @@
 import Button from "components/Button";
-import Form from "components/Form";
+import Form, { useFormField } from "components/Form";
 import Input from "components/Input";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import * as actions from "store/modules/auth/actions";
@@ -11,17 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [form, setForm] = useState({ email: "", password: "" });
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setForm((prevData) => {
-      return {
-        ...prevData,
-        [name]: value,
-      };
-    });
-  };
+  const { form, handleChange } = useFormField({ email: "", password: "" });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -38,7 +27,7 @@ const Login = () => {
           name="email"
           placeholder="Seu email"
           value={form.email}
-          onChange={handleChange}
+          onChange={(event) => handleChange("email", event.target.value)}
         ></Input>
         <Input
           type="password"
@@ -48,7 +37,7 @@ const Login = () => {
           minLength={6}
           maxLength={50}
           value={form.password}
-          onChange={handleChange}
+          onChange={(event) => handleChange("password", event.target.value)}
         ></Input>
 
         <Button type="submit">Entrar</Button>
