@@ -2,27 +2,25 @@ import Loading from "components/Loading";
 import { get } from "lodash";
 import { useEffect, useState } from "react";
 import { FaUserCircle, FaUserEdit, FaWindowClose } from "react-icons/fa";
+import { useSelector } from "react-redux";
 import { Link } from "react-router";
 import axios from "services/axios";
 import { Container } from "styles/GlobalStyles";
 import { ProfilePicture, StudentContainer } from "./styled";
 
 const Home = () => {
+  const isLoading = useSelector((state) => state.auth.isLoading);
   const [students, setStudents] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        setIsLoading(true);
         const response = await axios.get("/students");
         setStudents(response.data);
       } catch (error) {
         if (!axios.isCancel(error)) {
           console.error("Error fetching students:", error);
         }
-      } finally {
-        setIsLoading(false);
       }
     };
 
