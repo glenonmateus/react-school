@@ -10,10 +10,10 @@ import ProtectedRoute from "routes/ProtectedRoute";
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home></Home>}></Route>
       <Route path="/login" element={<Login></Login>}></Route>
       <Route path="/register" element={<Register></Register>}></Route>
       <Route element={<ProtectedRoute isClosed />}>
+        <Route path="/" element={<Home></Home>}></Route>
         <Route path="/student/:id/edit" element={<Student></Student>}></Route>
         <Route path="/student" element={<Student></Student>}></Route>
         <Route path="/photos/:id" element={<Photos></Photos>}></Route>
