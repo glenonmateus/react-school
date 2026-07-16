@@ -5,7 +5,7 @@ import rootReducer from "store/modules/rootReducer";
 const persistConfig = {
   key: "ApplicationName",
   storage,
-  whitelist: ["auth"],
+  whitelist: ["auth", "student"],
 };
 
 export default persistReducer(persistConfig, rootReducer);

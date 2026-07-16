@@ -1,32 +1,20 @@
 import Loading from "components/Loading";
 import { get } from "lodash";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { FaUserCircle, FaUserEdit, FaWindowClose } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router";
-import { toast } from "react-toastify";
-import axios from "services/axios";
+import * as actions from "store/modules/student/actions";
 import { Container } from "styles/GlobalStyles";
 import { ProfilePicture, StudentContainer } from "./styled";
 
-const Home = () => {
-  const isLoading = useSelector((state) => state.auth.isLoading);
-  const [students, setStudents] = useState([]);
+const Home = ({ students }) => {
+  const dispatch = useDispatch();
+  const { data, isLoading } = useSelector((state) => state.student);
 
   useEffect(() => {
-    const fetchStudents = async () => {
-      try {
-        const response = await axios.get("/students");
-        setStudents(response.data);
-      } catch (error) {
-        if (error.response.status === 401) {
-          toast.error("Usuário não autenticado");
-        }
-      }
-    };
-
-    fetchStudents();
-  }, []);
+    dispatch(actions.fetchStudentRequest());
+  }, [students, dispatch]);
 
   return (
     <Container>
@@ -35,7 +23,7 @@ const Home = () => {
       <h1>Alunos</h1>
 
       <StudentContainer>
-        {students.map((student) => {
+        {data.map((student) => {
           return (
             <div key={student.id}>
               <ProfilePicture>
