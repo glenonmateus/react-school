@@ -1,15 +1,16 @@
 import { FaHome, FaSignInAlt, FaSignOutAlt, FaUserAlt } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router";
-import * as actions from "store/modules/auth/actions";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router";
+import { persistor } from "store";
 import { Nav } from "./styled";
 
 const Header = () => {
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-  const handleLogout = () => {
-    dispatch(actions.logoutRequest());
+  const handleLogout = async () => {
+    await persistor.purge();
+    navigate("/login");
   };
 
   return (
