@@ -27,9 +27,14 @@ const Header = () => {
           </Link>
         </>
       ) : (
-        <Link to="/logout" onClick={handleLogout}>
-          <FaSignOutAlt size={24}></FaSignOutAlt>
-        </Link>
+        <>
+          <Link to="/student">
+            <FaUserAlt size={24}></FaUserAlt>
+          </Link>
+          <Link to="/logout" onClick={handleLogout}>
+            <FaSignOutAlt size={24}></FaSignOutAlt>
+          </Link>
+        </>
       )}
     </Nav>
   );

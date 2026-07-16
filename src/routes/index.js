@@ -14,8 +14,8 @@ const AppRoutes = () => {
       <Route path="/register" element={<Register></Register>}></Route>
       <Route element={<ProtectedRoute isClosed />}>
         <Route path="/" element={<Home></Home>}></Route>
-        <Route path="/student/:id/edit" element={<Student></Student>}></Route>
         <Route path="/student" element={<Student></Student>}></Route>
+        <Route path="/student/:id" element={<Student></Student>}></Route>
         <Route path="/photos/:id" element={<Photos></Photos>}></Route>
       </Route>
       <Route path="*" element={<NotFound></NotFound>}></Route>
