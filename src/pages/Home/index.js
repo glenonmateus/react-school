@@ -1,7 +1,8 @@
+import LinkIconDelete from "components/LinkIconDelete";
 import Loading from "components/Loading";
 import { get } from "lodash";
 import { useEffect } from "react";
-import { FaUserCircle, FaUserEdit, FaWindowClose } from "react-icons/fa";
+import { FaUserCircle, FaUserEdit } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router";
 import * as actions from "store/modules/student/actions";
@@ -39,9 +40,10 @@ const Home = () => {
                 <Link to={`/students/${student.id}/edit`}>
                   <FaUserEdit size={16}></FaUserEdit>
                 </Link>
-                <Link to={`/students/${student.id}/delete`}>
-                  <FaWindowClose size={16}></FaWindowClose>
-                </Link>
+                <LinkIconDelete
+                  size={16}
+                  studentId={student.id}
+                ></LinkIconDelete>
               </div>
             );
           })
