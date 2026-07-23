@@ -19,6 +19,7 @@ const store = configureStore({
           "PURGE",
           "REGISTER",
           "LOGIN_REQUEST",
+          "LOGOUT_REQUEST",
           "persist/PERSIST",
           "persist/PURGE",
         ],
