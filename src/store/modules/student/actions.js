@@ -1,12 +1,25 @@
 import * as types from "store/modules/types";
 
-export const fetchStudentRequest = (payload) => {
-  return { type: types.FETCH_STUDENT_REQUEST, payload };
+export const fetchStudentRequest = () => {
+  return { type: types.FETCH_STUDENT_REQUEST };
 };
 
 export const fetchStudentSuccess = (payload) => {
   return { type: types.FETCH_STUDENT_SUCCESS, payload };
 };
-export const fetchStudentFailure = (payload) => {
-  return { type: types.FETCH_STUDENT_FAILURE, payload };
+
+export const fetchStudentFailure = () => {
+  return { type: types.FETCH_STUDENT_FAILURE };
+};
+
+export const deleteStudentRequest = (studentId) => {
+  return { type: types.DELETE_STUDENT_REQUEST, studentId };
+};
+
+export const deleteStudentSuccess = () => {
+  return { type: types.DELETE_STUDENT_SUCCESS };
+};
+
+export const deleteStudentFailure = () => {
+  return { type: types.DELETE_STUDENT_FAILURE };
 };

@@ -26,6 +26,29 @@ const reducer = (state = initialState, action) => {
       return { ...state, isLoading: false, error: payload };
     }
 
+    case types.DELETE_STUDENT_REQUEST: {
+      return {
+        ...state,
+        isLoading: true,
+        error: null,
+      };
+    }
+
+    case types.DELETE_STUDENT_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        error: null,
+      };
+    }
+
+    case types.DELETE_STUDENT_FAILURE: {
+      return {
+        ...state,
+        isLoading: false,
+      };
+    }
+
     default:
       return state;
   }
