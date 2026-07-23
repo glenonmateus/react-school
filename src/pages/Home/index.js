@@ -8,13 +8,13 @@ import * as actions from "store/modules/student/actions";
 import { Container } from "styles/GlobalStyles";
 import { ProfilePicture, StudentContainer } from "./styled";
 
-const Home = ({ students }) => {
+const Home = () => {
   const dispatch = useDispatch();
   const { data, isLoading } = useSelector((state) => state.student);
 
   useEffect(() => {
     dispatch(actions.fetchStudentRequest());
-  }, [students, dispatch]);
+  }, [dispatch]);
 
   return (
     <Container>
@@ -23,27 +23,31 @@ const Home = ({ students }) => {
       <h1>Alunos</h1>
 
       <StudentContainer>
-        {data.map((student) => {
-          return (
-            <div key={student.id}>
-              <ProfilePicture>
-                {get(student, "Photos[0].url", false) ? (
-                  <img src={student.Photos[0].url} alt="" />
-                ) : (
-                  <FaUserCircle size={36} />
-                )}
-              </ProfilePicture>
-              <span>{student.name}</span>
-              <span>{student.email}</span>
-              <Link to={`/students/${student.id}/edit`}>
-                <FaUserEdit size={16}></FaUserEdit>
-              </Link>
-              <Link to={`/students/${student.id}/delete`}>
-                <FaWindowClose size={16}></FaWindowClose>
-              </Link>
-            </div>
-          );
-        })}
+        {data ? (
+          data.map((student) => {
+            return (
+              <div key={student.id}>
+                <ProfilePicture>
+                  {get(student, "Photos[0].url", false) ? (
+                    <img src={student.Photos[0].url} alt="" />
+                  ) : (
+                    <FaUserCircle size={36} />
+                  )}
+                </ProfilePicture>
+                <span>{student.name}</span>
+                <span>{student.email}</span>
+                <Link to={`/students/${student.id}/edit`}>
+                  <FaUserEdit size={16}></FaUserEdit>
+                </Link>
+                <Link to={`/students/${student.id}/delete`}>
+                  <FaWindowClose size={16}></FaWindowClose>
+                </Link>
+              </div>
+            );
+          })
+        ) : (
+          <div></div>
+        )}
       </StudentContainer>
     </Container>
   );
