@@ -7,7 +7,7 @@ const persistKey = process.env.REACT_APP_APPLICATION_NAME || "root";
 const persistConfig = {
   key: persistKey,
   storage,
-  whitelist: ["auth"],
+  whitelist: ["auth", "student"],
 };
 
 export default persistReducer(persistConfig, rootReducer);
