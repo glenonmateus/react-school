@@ -49,9 +49,6 @@
     ]
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.2",
-    "@commitlint/cli": "^21.2.1",
-    "@commitlint/config-conventional": "^21.2.0",
-    "cross-env": "^10.1.0"
+    "@biomejs/biome": "2.5.2"
   }
 }
