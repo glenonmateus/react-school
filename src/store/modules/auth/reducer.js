@@ -35,6 +35,15 @@ const reducer = (state = initialState, action) => {
       return { ...initialState };
     }
 
+    case types.LOGOUT_SUCCESS: {
+      localStorage.removeItem(
+        `persist:${process.env.REACT_APP_APPLICATION_NAME}`,
+      );
+      return undefined;
+    }
+    case types.LOGOUT_FAILURE: {
+      return { ...initialState };
+    }
     default:
       return state;
   }

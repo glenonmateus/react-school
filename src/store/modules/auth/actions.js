@@ -14,3 +14,10 @@ export const loginFailure = (payload) => {
 export const logoutRequest = (payload) => {
   return { type: types.LOGOUT_REQUEST, payload };
 };
+
+export const logoutSuccess = () => {
+  return { type: types.LOGOUT_SUCCESS };
+};
+export const logoutFailure = () => {
+  return { type: types.LOGOUT_FAILURE };
+};

@@ -17,4 +17,17 @@ function* loginRequest({ payload }) {
   }
 }
 
-export default all([takeLatest(types.LOGIN_REQUEST, loginRequest)]);
+function* logoutRequest({ payload }) {
+  const { navigate } = payload;
+  try {
+    yield put(actions.logoutSuccess());
+    navigate("/login");
+  } catch {
+    yield put(actions.logoutFailure());
+  }
+}
+
+export default all(
+  [takeLatest(types.LOGIN_REQUEST, loginRequest)],
+  [takeLatest(types.LOGOUT_REQUEST, logoutRequest)],
+);
