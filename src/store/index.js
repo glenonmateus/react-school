@@ -5,6 +5,7 @@ import persistedReducers from "store/modules/reduxPersist";
 import rootSaga from "store/modules/rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
+const middlewares = [sagaMiddleware];
 
 const store = configureStore({
   reducer: persistedReducers,
@@ -22,9 +23,10 @@ const store = configureStore({
           "LOGOUT_REQUEST",
           "persist/PERSIST",
           "persist/PURGE",
+          "DELETE_STUDENT_REQUEST",
         ],
       },
-    }).concat(sagaMiddleware),
+    }).concat(middlewares),
 });
 
 sagaMiddleware.run(rootSaga);
