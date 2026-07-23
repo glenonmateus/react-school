@@ -4,9 +4,17 @@ import axios from "services/axios";
 import * as actions from "store/modules/student/actions";
 import * as types from "store/modules/types";
 
+const axiosFetchStudents = async () => {
+  try {
+    return await axios.get(`/students/`);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 function* fetchStudentRequest() {
   try {
-    const response = yield call(axios.get, "/students");
+    const response = yield call(axiosFetchStudents);
     yield put(actions.fetchStudentSuccess(response.data));
   } catch (error) {
     if (error.response.status === 401) {
