@@ -1,7 +1,6 @@
 import Home from "pages/Home";
 import Login from "pages/Login";
 import NotFound from "pages/NotFound";
-import Photos from "pages/Photos";
 import Register from "pages/Register";
 import Student from "pages/Student";
 import { Route, Routes } from "react-router";
@@ -15,8 +14,6 @@ const AppRoutes = () => {
       <Route element={<ProtectedRoute isClosed />}>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/student" element={<Student></Student>}></Route>
-        <Route path="/student/:id" element={<Student></Student>}></Route>
-        <Route path="/photos/:id" element={<Photos></Photos>}></Route>
       </Route>
       <Route path="*" element={<NotFound></NotFound>}></Route>
     </Routes>
