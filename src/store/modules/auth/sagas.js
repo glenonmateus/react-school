@@ -4,10 +4,18 @@ import axios from "services/axios";
 import * as actions from "store/modules/auth/actions";
 import * as types from "store/modules/types";
 
+const login = async ({ email, password }) => {
+  try {
+    return await axios.post("/tokens", { email, password });
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 function* loginRequest({ payload }) {
   const { email, password, navigate } = payload;
   try {
-    const response = yield call(axios.post, "/tokens", { email, password });
+    const response = yield call(login, { email, password });
     yield put(actions.loginSuccess(response.data));
     toast.success("Logado com sucesso");
     navigate("/");
