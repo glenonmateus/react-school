@@ -27,7 +27,7 @@ function* logoutRequest({ payload }) {
   }
 }
 
-export default all(
-  [takeLatest(types.LOGIN_REQUEST, loginRequest)],
-  [takeLatest(types.LOGOUT_REQUEST, logoutRequest)],
-);
+export default all([
+  takeLatest(types.LOGIN_REQUEST, loginRequest),
+  takeLatest(types.LOGOUT_REQUEST, logoutRequest),
+]);
