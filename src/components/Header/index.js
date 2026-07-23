@@ -1,16 +1,16 @@
 import { FaHome, FaSignInAlt, FaSignOutAlt, FaUserAlt } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
-import { persistor } from "store";
+import * as actions from "store/modules/auth/actions";
 import { Nav } from "./styled";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const handleLogout = async () => {
-    await persistor.purge();
-    navigate("/login");
+    dispatch(actions.logoutRequest({ navigate }));
   };
 
   return (
@@ -32,7 +32,7 @@ const Header = () => {
           <Link to="/student">
             <FaUserAlt size={24}></FaUserAlt>
           </Link>
-          <Link to="/logout" onClick={handleLogout}>
+          <Link onClick={handleLogout}>
             <FaSignOutAlt size={24}></FaSignOutAlt>
           </Link>
         </>
