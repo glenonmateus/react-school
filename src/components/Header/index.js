@@ -15,7 +15,7 @@ const Header = () => {
   const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     dispatch(actions.logoutRequest({ navigate }));
   };
 
