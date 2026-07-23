@@ -38,7 +38,7 @@ const Header = () => {
           <Link to="/student">
             <FaUserAlt size={24}></FaUserAlt>
           </Link>
-          <Link onClick={handleLogout}>
+          <Link onClick={handleLogout} reloadDocument>
             <FaSignOutAlt size={24}></FaSignOutAlt>
           </Link>
           <FaCircle size={24} color="#66ff33"></FaCircle>
