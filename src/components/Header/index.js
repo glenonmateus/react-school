@@ -1,4 +1,10 @@
-import { FaHome, FaSignInAlt, FaSignOutAlt, FaUserAlt } from "react-icons/fa";
+import {
+  FaCircle,
+  FaHome,
+  FaSignInAlt,
+  FaSignOutAlt,
+  FaUserAlt,
+} from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
 import * as actions from "store/modules/auth/actions";
@@ -35,6 +41,7 @@ const Header = () => {
           <Link onClick={handleLogout}>
             <FaSignOutAlt size={24}></FaSignOutAlt>
           </Link>
+          <FaCircle size={24} color="#66ff33"></FaCircle>
         </>
       )}
     </Nav>
