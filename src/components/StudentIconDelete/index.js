@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router";
 import * as actions from "store/modules/student/actions";
 
-const LinkIconDelete = ({ studentId, size, ...rest }) => {
+const StudentIconDelete = ({ studentId, size, ...rest }) => {
   const dispatch = useDispatch();
 
   const handleOnClick = () => {
@@ -17,4 +17,4 @@ const LinkIconDelete = ({ studentId, size, ...rest }) => {
   );
 };
 
-export default LinkIconDelete;
+export default StudentIconDelete;

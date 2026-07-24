@@ -3,12 +3,10 @@ import Form, { useFormField } from "components/Form";
 import Input from "components/Input";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { toast } from "react-toastify";
-import axios from "services/axios";
-import * as types from "store/modules/types";
+import * as actions from "store/modules/student/actions";
 import { Container } from "styles/GlobalStyles";
 
-const Student = () => {
+const StoreStudent = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { form, handleChange } = useFormField({
@@ -22,15 +20,8 @@ const Student = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    try {
-      await axios.post("/students/store", form);
-      toast.success("Aluno cadastrado com sucesso!");
-      navigate("/");
-    } catch (error) {
-      const errors = error.response.data.errors;
-      errors.map((error) => toast.error(error));
-    }
+    console.log(form);
+    dispatch(actions.storeStudentRequest(form));
   };
 
   return (
@@ -107,4 +98,4 @@ const Student = () => {
   );
 };
 
-export default Student;
+export default StoreStudent;

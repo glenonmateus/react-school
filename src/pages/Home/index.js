@@ -1,5 +1,5 @@
-import LinkIconDelete from "components/LinkIconDelete";
 import Loading from "components/Loading";
+import StudentIconDelete from "components/StudentIconDelete";
 import { get } from "lodash";
 import { useEffect } from "react";
 import { FaUserCircle, FaUserEdit } from "react-icons/fa";
@@ -40,10 +40,10 @@ const Home = () => {
                 <Link to={`/students/${student.id}/edit`}>
                   <FaUserEdit size={16}></FaUserEdit>
                 </Link>
-                <LinkIconDelete
+                <StudentIconDelete
                   size={16}
                   studentId={student.id}
-                ></LinkIconDelete>
+                ></StudentIconDelete>
               </div>
             );
           })
