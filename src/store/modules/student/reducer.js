@@ -49,6 +49,52 @@ const reducer = (state = initialState, action) => {
       };
     }
 
+    case types.UPDATE_STUDENT_REQUEST: {
+      return {
+        ...state,
+        isLoading: true,
+        error: null,
+      };
+    }
+
+    case types.UPDATE_STUDENT_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        error: null,
+      };
+    }
+
+    case types.UPDATE_STUDENT_FAILURE: {
+      return {
+        ...state,
+        isLoading: false,
+      };
+    }
+
+    case types.STORE_STUDENT_REQUEST: {
+      return {
+        ...state,
+        isLoading: true,
+        error: null,
+      };
+    }
+
+    case types.STORE_STUDENT_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        error: null,
+      };
+    }
+
+    case types.STORE_STUDENT_FAILURE: {
+      return {
+        ...state,
+        isLoading: false,
+      };
+    }
+
     default:
       return state;
   }
