@@ -84,10 +84,12 @@ const axiosUpdateStudent = async (payload) => {
 };
 
 function* updateStudentRequest({ payload }) {
+  const { navigate } = payload;
   try {
     yield call(axiosUpdateStudent, payload);
     yield put(actions.updateStudentSuccess());
     toast.success("Aluno atualizado com sucesso!");
+    navigate("/", { replace: true });
   } catch {
     yield put(actions.updateStudentFailure());
   }
