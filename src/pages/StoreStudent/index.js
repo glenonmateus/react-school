@@ -1,12 +1,15 @@
 import Button from "components/Button";
 import Form, { useFormField } from "components/Form";
 import Input from "components/Input";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import axios from "services/axios";
+import * as types from "store/modules/types";
 import { Container } from "styles/GlobalStyles";
 
 const Student = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { form, handleChange } = useFormField({
     name: "",
