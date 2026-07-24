@@ -1,10 +1,10 @@
 import Loading from "components/Loading";
 import StudentIconDelete from "components/StudentIconDelete";
+import StudentIconUpdate from "components/StudentIconUpdate";
 import { get } from "lodash";
 import { useEffect } from "react";
-import { FaUserCircle, FaUserEdit } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router";
 import * as actions from "store/modules/student/actions";
 import { Container } from "styles/GlobalStyles";
 import { ProfilePicture, StudentContainer } from "./styled";
@@ -37,9 +37,10 @@ const Home = () => {
                 </ProfilePicture>
                 <span>{student.name}</span>
                 <span>{student.email}</span>
-                <Link to={`/students/${student.id}/edit`}>
-                  <FaUserEdit size={16}></FaUserEdit>
-                </Link>
+                <StudentIconUpdate
+                  size={16}
+                  studentId={student.id}
+                ></StudentIconUpdate>
                 <StudentIconDelete
                   size={16}
                   studentId={student.id}
