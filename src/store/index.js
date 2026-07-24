@@ -24,6 +24,7 @@ const store = configureStore({
           "persist/PERSIST",
           "persist/PURGE",
           "DELETE_STUDENT_REQUEST",
+          "STORE_STUDENT_REQUEST",
         ],
       },
     }).concat(middlewares),
