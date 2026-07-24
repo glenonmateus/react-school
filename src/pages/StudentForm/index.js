@@ -24,12 +24,22 @@ const StudentForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(actions.storeStudentRequest({ ...form, navigate }));
+    if (student) {
+      dispatch(
+        actions.updateStudentRequest({
+          studentId: student.id,
+          ...form,
+          navigate,
+        }),
+      );
+    } else {
+      dispatch(actions.storeStudentRequest({ ...form, navigate }));
+    }
   };
 
   return (
     <Container>
-      <h1>Cadastrar Aluno</h1>
+      <h1>{student ? "Editar Aluno" : "Cadastrar Aluno"}</h1>
       <Form onSubmit={handleSubmit}>
         <Input
           name="name"
