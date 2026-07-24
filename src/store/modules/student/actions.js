@@ -24,8 +24,8 @@ export const deleteStudentFailure = () => {
   return { type: types.DELETE_STUDENT_FAILURE };
 };
 
-export const updateStudentRequest = (studentId) => {
-  return { type: types.UPDATE_STUDENT_REQUEST, studentId };
+export const updateStudentRequest = (payload) => {
+  return { type: types.UPDATE_STUDENT_REQUEST, payload };
 };
 
 export const updateStudentSuccess = () => {
