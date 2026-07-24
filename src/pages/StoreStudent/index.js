@@ -20,8 +20,7 @@ const StoreStudent = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(form);
-    dispatch(actions.storeStudentRequest(form));
+    dispatch(actions.storeStudentRequest({ ...form, navigate }));
   };
 
   return (
