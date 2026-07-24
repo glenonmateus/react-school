@@ -67,8 +67,35 @@ function* storeStudentRequest({ payload }) {
   }
 }
 
+const axiosUpdateStudent = async (payload) => {
+  const { studentId, name, surname, email, age, weight, height } = payload;
+  try {
+    return await axios.put(`/students/${studentId}`, {
+      name,
+      surname,
+      email,
+      age,
+      weight,
+      height,
+    });
+  } catch (error) {
+    handleAxiosError(error);
+  }
+};
+
+function* updateStudentRequest({ payload }) {
+  try {
+    yield call(axiosUpdateStudent, payload);
+    yield put(actions.updateStudentSuccess());
+    toast.success("Aluno atualizado com sucesso!");
+  } catch {
+    yield put(actions.updateStudentFailure());
+  }
+}
+
 export default all([
   takeLatest(types.FETCH_STUDENT_REQUEST, fetchStudentRequest),
   takeLatest(types.DELETE_STUDENT_REQUEST, deleteStudentRequest),
   takeLatest(types.STORE_STUDENT_REQUEST, storeStudentRequest),
+  takeLatest(types.UPDATE_STUDENT_REQUEST, updateStudentRequest),
 ]);
