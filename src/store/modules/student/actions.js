@@ -23,3 +23,27 @@ export const deleteStudentSuccess = () => {
 export const deleteStudentFailure = () => {
   return { type: types.DELETE_STUDENT_FAILURE };
 };
+
+export const updateStudentRequest = (studentId) => {
+  return { type: types.UPDATE_STUDENT_REQUEST, studentId };
+};
+
+export const updateStudentSuccess = () => {
+  return { type: types.UPDATE_STUDENT_SUCCESS };
+};
+
+export const updateStudentFailure = () => {
+  return { type: types.UPDATE_STUDENT_FAILURE };
+};
+
+export const storeStudentRequest = (payload) => {
+  return { type: types.STORE_STUDENT_REQUEST, payload };
+};
+
+export const storeStudentSuccess = () => {
+  return { type: types.STORE_STUDENT_SUCCESS };
+};
+
+export const storeStudentFailure = () => {
+  return { type: types.STORE_STUDENT_FAILURE };
+};
