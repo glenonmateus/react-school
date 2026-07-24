@@ -1,21 +1,25 @@
 import Button from "components/Button";
 import Form, { useFormField } from "components/Form";
 import Input from "components/Input";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router";
 import * as actions from "store/modules/student/actions";
 import { Container } from "styles/GlobalStyles";
 
-const StoreStudent = () => {
+const StudentForm = () => {
+  const { id } = useParams();
+  const student = useSelector((state) =>
+    state.student.data.find((student) => student.id === Number(id)),
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { form, handleChange } = useFormField({
-    name: "",
-    surname: "",
-    email: "",
-    age: "",
-    weight: "",
-    height: "",
+    name: student ? student.name : "",
+    surname: student ? student.surname : "",
+    email: student ? student.email : "",
+    age: student ? student.age : "",
+    weight: student ? student.weight : "",
+    height: student ? student.height : "",
   });
 
   const handleSubmit = async (event) => {
@@ -97,4 +101,4 @@ const StoreStudent = () => {
   );
 };
 
-export default StoreStudent;
+export default StudentForm;
