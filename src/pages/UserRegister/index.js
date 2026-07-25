@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import axios from "services/axios";
 import { Container } from "styles/GlobalStyles";
 
-const Register = () => {
+const UserRegister = () => {
   const navigate = useNavigate();
   const { form, handleChange } = useFormField({
     name: "",
@@ -88,4 +88,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default UserRegister;
