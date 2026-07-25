@@ -1,4 +1,5 @@
 import Loading from "components/Loading";
+import StudentIconAdd from "components/StudentIconAdd";
 import StudentIconDelete from "components/StudentIconDelete";
 import StudentIconUpdate from "components/StudentIconUpdate";
 import { get } from "lodash";
@@ -7,7 +8,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "store/modules/student/actions";
 import { Container } from "styles/GlobalStyles";
-import { ProfilePicture, StudentContainer } from "./styled";
+import { ProfilePicture, StudentContainer, StudentTitle } from "./styled";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,10 @@ const Home = () => {
     <Container>
       <Loading isLoading={isLoading}></Loading>
 
-      <h1>Alunos</h1>
+      <StudentTitle>
+        <h1>Alunos</h1>
+        <StudentIconAdd size={36}></StudentIconAdd>
+      </StudentTitle>
 
       <StudentContainer>
         {data ? (

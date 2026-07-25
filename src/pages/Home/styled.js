@@ -22,3 +22,9 @@ export const ProfilePicture = styled.div`
     border-radius: 50%;
   }
 `;
+
+export const StudentTitle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
