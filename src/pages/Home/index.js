@@ -36,6 +36,7 @@ const Home = () => {
                   )}
                 </ProfilePicture>
                 <span>{student.name}</span>
+                <span>{student.surname}</span>
                 <span>{student.email}</span>
                 <StudentIconUpdate
                   size={16}
