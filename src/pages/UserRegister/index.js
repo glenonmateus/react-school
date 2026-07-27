@@ -1,12 +1,13 @@
 import Button from "components/Button";
 import Form, { useFormField } from "components/Form";
 import Input from "components/Input";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { toast } from "react-toastify";
-import axios from "services/axios";
+import * as actions from "store/modules/user/actions";
 import { Container } from "styles/GlobalStyles";
 
 const UserRegister = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { form, handleChange } = useFormField({
     name: "",
@@ -17,15 +18,7 @@ const UserRegister = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    try {
-      await axios.post("/users/store", form);
-      toast.success("Conta criada com sucesso!");
-      navigate("/login", { replace: true });
-    } catch (error) {
-      const errors = error.response.data.errors;
-      errors.map((error) => toast.error(error));
-    }
+    dispatch(actions.storeUserRequest({ ...form, navigate }));
   };
 
   return (
