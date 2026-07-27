@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import * as actions from "store/modules/user/actions";
 import { Container } from "styles/GlobalStyles";
 
-const RegisterUser = () => {
+const User = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { form, handleChange } = useFormField({
@@ -81,4 +81,4 @@ const RegisterUser = () => {
   );
 };
 
-export default RegisterUser;
+export default User;
