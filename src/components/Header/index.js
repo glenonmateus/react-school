@@ -26,7 +26,7 @@ const Header = () => {
       </Link>
       {!isLoggedIn ? (
         <>
-          <Link to="/register">
+          <Link to="/register/user">
             <FaUserAlt size={24}></FaUserAlt>
           </Link>
           <Link to="/login">
