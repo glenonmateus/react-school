@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router";
 import * as actions from "store/modules/student/actions";
 import { Container } from "styles/GlobalStyles";
 
-const StudentForm = () => {
+const Student = () => {
   const { id } = useParams();
   const student = useSelector((state) =>
     state.student.data.find((student) => student.id === Number(id)),
@@ -111,4 +111,4 @@ const StudentForm = () => {
   );
 };
 
-export default StudentForm;
+export default Student;

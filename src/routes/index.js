@@ -2,7 +2,7 @@ import Home from "pages/Home";
 import Login from "pages/Login";
 import NotFound from "pages/NotFound";
 import RegisterUser from "pages/Register/User";
-import StudentForm from "pages/StudentForm";
+import Student from "pages/Student";
 import { Route, Routes } from "react-router";
 import ProtectedRoute from "routes/ProtectedRoute";
 
@@ -16,12 +16,9 @@ const AppRoutes = () => {
       ></Route>
       <Route element={<ProtectedRoute isClosed />}>
         <Route path="/" element={<Home></Home>}></Route>
-        <Route path="/student" element={<StudentForm></StudentForm>}></Route>
+        <Route path="/student" element={<Student></Student>}></Route>
         <Route path="/profile" element={<RegisterUser></RegisterUser>}></Route>
-        <Route
-          path="/student/:id"
-          element={<StudentForm></StudentForm>}
-        ></Route>
+        <Route path="/student/:id" element={<Student></Student>}></Route>
       </Route>
       <Route path="*" element={<NotFound></NotFound>}></Route>
     </Routes>
