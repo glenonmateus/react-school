@@ -26,6 +26,7 @@ const store = configureStore({
           "DELETE_STUDENT_REQUEST",
           "STORE_STUDENT_REQUEST",
           "UPDATE_STUDENT_REQUEST",
+          "STORE_USER_REQUEST",
         ],
       },
     }).concat(middlewares),

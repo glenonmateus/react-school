@@ -18,9 +18,8 @@ function* loginRequest({ payload }) {
     const response = yield call(axiosGenerateToken, { email, password });
     yield put(actions.loginSuccess(response.data));
     toast.success("Logado com sucesso");
-    navigate("/");
+    navigate("/", { replace: true });
   } catch {
-    toast.error("Usuário e/ou senha inválidos");
     yield put(actions.loginFailure());
   }
 }

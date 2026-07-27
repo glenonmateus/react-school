@@ -19,12 +19,12 @@ const axiosStoreUser = async (payload) => {
 };
 
 function* storeUserRequest({ payload }) {
-  // const { navigate } = payload;
+  const { navigate } = payload;
   try {
     yield call(axiosStoreUser, payload);
     yield put(actions.storeUserSuccess());
     toast.success("Conta criada com sucesso!");
-    // navigate("/login", { replace: true });
+    navigate("/login", { replace: true });
   } catch {
     yield put(actions.storeUserFailure());
   }
