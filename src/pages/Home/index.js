@@ -1,4 +1,5 @@
 import Loading from "components/Loading";
+import ProfilePicture from "components/ProfilePicture";
 import StudentIconAdd from "components/StudentIconAdd";
 import StudentIconDelete from "components/StudentIconDelete";
 import StudentIconUpdate from "components/StudentIconUpdate";
@@ -8,7 +9,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "store/modules/student/actions";
 import { Container } from "styles/GlobalStyles";
-import { ProfilePicture, StudentContainer, StudentTitle } from "./styled";
+import { StudentContainer, StudentTitle } from "./styled";
 
 const Home = () => {
   const dispatch = useDispatch();
