@@ -39,6 +39,6 @@ function* fetchUserRequest({ payload }) {
 
 export default all([
   takeLatest(types.STORE_USER_REQUEST, storeUserRequest),
-  takeLatest(types.UPDATE_STUDENT_REQUEST, updateUserRequest),
+  takeLatest(types.UPDATE_USER_REQUEST, updateUserRequest),
   takeLatest(types.FETCH_USER_REQUEST, fetchUserRequest),
 ]);
