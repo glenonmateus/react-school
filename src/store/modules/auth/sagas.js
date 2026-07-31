@@ -7,8 +7,8 @@ import * as types from "store/modules/types";
 function* loginRequest({ payload }) {
   const { email, password, navigate } = payload;
   try {
-    const response = yield call(generateToken, { email, password });
-    yield put(actions.loginSuccess(response.data));
+    const { data } = yield call(generateToken, { email, password });
+    yield put(actions.loginSuccess(data));
     toast.success("Logado com sucesso");
     navigate("/", { replace: true });
   } catch {
