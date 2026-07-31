@@ -1,7 +1,8 @@
 import Button from "components/Button";
 import Form, { useFormField } from "components/Form";
 import Input from "components/Input";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import * as actions from "store/modules/user/actions";
 import { Container } from "styles/GlobalStyles";
@@ -9,21 +10,40 @@ import { Container } from "styles/GlobalStyles";
 const User = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const userId = useSelector((state) => state.auth.user.id);
+
+  const userData = useSelector((state) => state.user.data);
   const { form, handleChange } = useFormField({
-    name: "",
-    surname: "",
-    email: "",
+    name: userData ? userData.name : "",
+    surname: userData ? userData.surname : "",
+    email: userData ? userData.email : "",
     password: "",
   });
 
+  useEffect(() => {
+    if (userId && !userData) dispatch(actions.fetchUserRequest(userId));
+  }, [dispatch, userId, userData]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(actions.storeUserRequest({ ...form, navigate }));
+
+    // Remove empty value from form object
+    Object.keys(form).forEach((key) => {
+      if (!form[key]) {
+        delete form[key];
+      }
+    });
+
+    if (userId) {
+      return dispatch(actions.updateUserRequest({ ...form, navigate }));
+    }
+    return dispatch(actions.storeUserRequest({ ...form, navigate }));
   };
 
   return (
     <Container>
-      <h1>Crie sua conta</h1>
+      <h1>{userData ? "Perfil do Usuário" : "Crie sua conta"}</h1>
       <Form onSubmit={handleSubmit}>
         <Input
           name="name"
@@ -75,7 +95,7 @@ const User = () => {
           Senha:
         </Input>
 
-        <Button type="submit">Cadastrar</Button>
+        <Button type="submit">{userData ? "Salvar" : "Cadastrar"}</Button>
       </Form>
     </Container>
   );
