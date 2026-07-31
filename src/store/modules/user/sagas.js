@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import { all, call, put, takeLatest } from "redux-saga/effects";
-import { fetchUser, storeUser, updateUser } from "services/axios/users";
+import { fetchUserById, storeUser, updateUser } from "services/axios/users";
 import * as types from "store/modules/types";
 import * as actions from "store/modules/user/actions";
 
@@ -30,7 +30,7 @@ function* updateUserRequest({ payload }) {
 
 function* fetchUserRequest({ payload }) {
   try {
-    const { data } = yield call(fetchUser, payload);
+    const { data } = yield call(fetchUserById, payload);
     yield put(actions.fetchUserSuccess(data));
   } catch {
     yield put(actions.fetchUserFailure());
