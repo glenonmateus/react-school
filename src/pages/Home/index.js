@@ -7,13 +7,14 @@ import { get } from "lodash";
 import { useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import * as actions from "store/modules/student/actions";
 import { Container } from "styles/GlobalStyles";
 import { StudentContainer, StudentTitle } from "./styled";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { data, isLoading } = useSelector((state) => state.student);
+  const { data, isLoading, error } = useSelector((state) => state.student);
 
   useEffect(() => {
     dispatch(actions.fetchStudentRequest());
@@ -22,6 +23,8 @@ const Home = () => {
   return (
     <Container>
       <Loading isLoading={isLoading}></Loading>
+
+      {error?.map((error) => toast.error(error))}
 
       <StudentTitle>
         <h1>Alunos</h1>
