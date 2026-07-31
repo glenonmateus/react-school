@@ -13,11 +13,11 @@ export const storeUserFailure = () => {
 export const fetchUserRequest = (payload) => {
   return { type: types.FETCH_USER_REQUEST, payload };
 };
-export const fetchUserSuccess = () => {
-  return { type: types.FETCH_USER_SUCCESS };
+export const fetchUserSuccess = (payload) => {
+  return { type: types.FETCH_USER_SUCCESS, payload };
 };
-export const fetchUserFailure = () => {
-  return { type: types.FETCH_USER_FAILURE };
+export const fetchUserFailure = (payload) => {
+  return { type: types.FETCH_USER_FAILURE, payload };
 };
 
 export const updateUserRequest = (payload) => {
