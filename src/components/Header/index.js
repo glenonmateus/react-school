@@ -35,7 +35,7 @@ const Header = () => {
         </>
       ) : (
         <>
-          <Link to="/student">
+          <Link to="/user/profile">
             <FaUserAlt size={24}></FaUserAlt>
           </Link>
           <Link onClick={handleLogout} reloadDocument>
