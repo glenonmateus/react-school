@@ -3,7 +3,8 @@ import * as types from "store/modules/types";
 const initialState = {
   isLoggedIn: false,
   isLoading: false,
-  user: { id: "", email: "", token: "" },
+  access_token: "",
+  user: { id: "", name: "", surname: "", email: "" },
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,10 +16,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         isLoggedIn: true,
         isLoading: false,
+        access_token: payload.access_token,
         user: {
-          id: payload.id,
-          email: payload.email,
-          token: payload.access_token,
+          id: payload.user.id,
+          name: payload.user.name,
+          surname: payload.user.surname,
+          email: payload.user.email,
         },
       };
     }
