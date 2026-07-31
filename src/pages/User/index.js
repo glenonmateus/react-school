@@ -12,18 +12,18 @@ const User = () => {
   const navigate = useNavigate();
 
   const userId = useSelector((state) => state.auth.user.id);
-
   const userData = useSelector((state) => state.user.data);
+
+  useEffect(() => {
+    if (userId && !userData) dispatch(actions.fetchUserRequest(userId));
+  }, [dispatch, userId, userData]);
+
   const { form, handleChange } = useFormField({
     name: userData ? userData.name : "",
     surname: userData ? userData.surname : "",
     email: userData ? userData.email : "",
     password: "",
   });
-
-  useEffect(() => {
-    if (userId && !userData) dispatch(actions.fetchUserRequest(userId));
-  }, [dispatch, userId, userData]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -43,7 +43,7 @@ const User = () => {
 
   return (
     <Container>
-      <h1>{userData ? "Perfil do Usuário" : "Crie sua conta"}</h1>
+      <h1>{userId ? "Perfil do Usuário" : "Crie sua conta"}</h1>
       <Form onSubmit={handleSubmit}>
         <Input
           name="name"
@@ -95,7 +95,7 @@ const User = () => {
           Senha:
         </Input>
 
-        <Button type="submit">{userData ? "Salvar" : "Cadastrar"}</Button>
+        <Button type="submit">{userId ? "Salvar" : "Cadastrar"}</Button>
       </Form>
     </Container>
   );
