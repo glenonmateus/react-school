@@ -1,8 +1,8 @@
 import axios, { handleAxiosError } from "services/axios";
 
-export const fetchUser = async () => {
+export const fetchUserById = async (userId) => {
   try {
-    return await axios.get(`/users/`);
+    return await axios.get(`/users/${userId}`);
   } catch (error) {
     handleAxiosError(error);
   }
