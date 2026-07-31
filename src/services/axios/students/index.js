@@ -17,15 +17,9 @@ export const deleteStudent = async (studentId) => {
 };
 
 export const storeStudent = async (payload) => {
-  const { name, surname, email, age, weight, height } = payload;
   try {
     return await axios.post(`/students/store`, {
-      name,
-      surname,
-      email,
-      age,
-      weight,
-      height,
+      ...payload,
     });
   } catch (error) {
     handleAxiosError(error);
@@ -33,15 +27,10 @@ export const storeStudent = async (payload) => {
 };
 
 export const updateStudent = async (payload) => {
-  const { studentId, name, surname, email, age, weight, height } = payload;
+  const { studentId } = payload;
   try {
     return await axios.put(`/students/${studentId}`, {
-      name,
-      surname,
-      email,
-      age,
-      weight,
-      height,
+      ...payload,
     });
   } catch (error) {
     handleAxiosError(error);

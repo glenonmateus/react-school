@@ -9,13 +9,9 @@ export const fetchUser = async () => {
 };
 
 export const storeUser = async (payload) => {
-  const { name, surname, email, password } = payload;
   try {
     return await axios.post(`/users/store`, {
-      name,
-      surname,
-      email,
-      password,
+      ...payload,
     });
   } catch (error) {
     handleAxiosError(error);
@@ -23,9 +19,8 @@ export const storeUser = async (payload) => {
 };
 
 export const updateUser = async (payload) => {
-  const { name, surname, email, password } = payload;
   try {
-    return await axios.put(`/users`, { name, surname, email, password });
+    return await axios.put(`/users`, { ...payload });
   } catch (error) {
     handleAxiosError(error);
   }
