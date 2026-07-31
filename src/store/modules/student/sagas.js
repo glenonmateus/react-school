@@ -1,37 +1,26 @@
 import { toast } from "react-toastify";
 import { all, call, put, takeLatest } from "redux-saga/effects";
-import axios, { handleAxiosError } from "services/axios";
+import {
+  deleteStudent,
+  fetchStudent,
+  storeStudent,
+  updateStudent,
+} from "services/axios/students";
 import * as actions from "store/modules/student/actions";
 import * as types from "store/modules/types";
 
-const axiosFetchStudents = async () => {
-  try {
-    return await axios.get(`/students/`);
-  } catch (error) {
-    handleAxiosError(error);
-  }
-};
-
 function* fetchStudentRequest() {
   try {
-    const response = yield call(axiosFetchStudents);
-    yield put(actions.fetchStudentSuccess(response.data));
+    const { data } = yield call(fetchStudent);
+    yield put(actions.fetchStudentSuccess(data));
   } catch {
     yield put(actions.fetchStudentFailure());
   }
 }
 
-const axiosDeleteStudent = async (studentId) => {
-  try {
-    return await axios.delete(`/students/${studentId}`);
-  } catch (error) {
-    handleAxiosError(error);
-  }
-};
-
 function* deleteStudentRequest({ studentId }) {
   try {
-    yield call(axiosDeleteStudent, studentId);
+    yield call(deleteStudent, studentId);
     yield put(actions.deleteStudentSuccess());
     toast.success("Aluno deletado com sucesso!");
   } catch {
@@ -39,26 +28,10 @@ function* deleteStudentRequest({ studentId }) {
   }
 }
 
-const axiosStoreStudent = async (payload) => {
-  const { name, surname, email, age, weight, height } = payload;
-  try {
-    return await axios.post(`/students/store`, {
-      name,
-      surname,
-      email,
-      age,
-      weight,
-      height,
-    });
-  } catch (error) {
-    handleAxiosError(error);
-  }
-};
-
 function* storeStudentRequest({ payload }) {
   const { navigate } = payload;
   try {
-    yield call(axiosStoreStudent, payload);
+    yield call(storeStudent, payload);
     yield put(actions.storeStudentSuccess());
     toast.success("Aluno cadastrado com sucesso!");
     navigate("/", { replace: true });
@@ -67,26 +40,10 @@ function* storeStudentRequest({ payload }) {
   }
 }
 
-const axiosUpdateStudent = async (payload) => {
-  const { studentId, name, surname, email, age, weight, height } = payload;
-  try {
-    return await axios.put(`/students/${studentId}`, {
-      name,
-      surname,
-      email,
-      age,
-      weight,
-      height,
-    });
-  } catch (error) {
-    handleAxiosError(error);
-  }
-};
-
 function* updateStudentRequest({ payload }) {
   const { navigate } = payload;
   try {
-    yield call(axiosUpdateStudent, payload);
+    yield call(updateStudent, payload);
     yield put(actions.updateStudentSuccess());
     toast.success("Aluno atualizado com sucesso!");
     navigate("/", { replace: true });
