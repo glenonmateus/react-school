@@ -1,6 +1,7 @@
 import Button from "components/Button";
 import Form, { useFormField } from "components/Form";
 import Input from "components/Input";
+import Loading from "components/Loading";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
@@ -11,17 +12,17 @@ const User = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const userId = useSelector((state) => state.auth.user.id);
-  const userData = useSelector((state) => state.user.data);
+  const { user } = useSelector((state) => state.auth);
+  const { data, isLoading } = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (userId && !userData) dispatch(actions.fetchUserRequest(userId));
-  }, [dispatch, userId, userData]);
+    if (user.id && !data) dispatch(actions.fetchUserRequest(user.id));
+  }, [dispatch, user.id, data]);
 
   const { form, handleChange } = useFormField({
-    name: userData ? userData.name : "",
-    surname: userData ? userData.surname : "",
-    email: userData ? userData.email : "",
+    name: data ? data.name : user.name,
+    surname: data ? data.surname : user.surname,
+    email: data ? data.email : user.email,
     password: "",
   });
 
@@ -35,7 +36,7 @@ const User = () => {
       }
     });
 
-    if (userId) {
+    if (user.id) {
       return dispatch(actions.updateUserRequest({ ...form, navigate }));
     }
     return dispatch(actions.storeUserRequest({ ...form, navigate }));
@@ -43,7 +44,8 @@ const User = () => {
 
   return (
     <Container>
-      <h1>{userId ? "Perfil do Usuário" : "Crie sua conta"}</h1>
+      <Loading isLoading={isLoading}></Loading>
+      <h1>{user.id ? "Perfil do Usuário" : "Crie sua conta"}</h1>
       <Form onSubmit={handleSubmit}>
         <Input
           name="name"
@@ -95,7 +97,7 @@ const User = () => {
           Senha:
         </Input>
 
-        <Button type="submit">{userId ? "Salvar" : "Cadastrar"}</Button>
+        <Button type="submit">{user.id ? "Salvar" : "Cadastrar"}</Button>
       </Form>
     </Container>
   );
