@@ -20,7 +20,7 @@ function* updateUserRequest({ payload }) {
   const { navigate } = payload;
   try {
     yield call(updateUser, payload);
-    yield put(actions.updateUserSuccess());
+    yield put(actions.updateUserSuccess(payload));
     toast.success("Conta atualizada com sucesso!");
     navigate("/", { replace: true });
   } catch {
